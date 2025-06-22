@@ -1,6 +1,5 @@
 FROM mautic/mautic:5-apache
 
-# Argumentos que podem ser passados em tempo de build
 ARG MAUTIC_DB_HOST
 ARG MAUTIC_DB_USER
 ARG MAUTIC_DB_PASSWORD
@@ -9,7 +8,6 @@ ARG MAUTIC_URL
 ARG MAUTIC_ADMIN_EMAIL
 ARG MAUTIC_ADMIN_PASSWORD
 
-# Variáveis de ambiente internas ao container
 ENV MAUTIC_DB_HOST=$MAUTIC_DB_HOST
 ENV MAUTIC_DB_USER=$MAUTIC_DB_USER
 ENV MAUTIC_DB_PASSWORD=$MAUTIC_DB_PASSWORD
@@ -19,8 +17,8 @@ ENV MAUTIC_ADMIN_EMAIL=$MAUTIC_ADMIN_EMAIL
 ENV MAUTIC_ADMIN_PASSWORD=$MAUTIC_ADMIN_PASSWORD
 ENV PHP_INI_DATE_TIMEZONE='UTC'
 
-# Substitui o entrypoint original por um que protege o banco
 COPY custom-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]
