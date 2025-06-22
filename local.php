@@ -7,4 +7,6 @@ $parameters = array(
     'db_user' => getenv('MAUTIC_DB_USER'),
     'db_password' => getenv('MAUTIC_DB_PASSWORD'),
     'installed' => true,
+    'site_url' => getenv('MAUTIC_URL'),
+    'secret_key' => 'b84c91f2-1d61-4de4-9a75-75b4d18bd2d8'
 );
