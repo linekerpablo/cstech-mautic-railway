@@ -2,12 +2,15 @@
 
 CONFIG_PATH="/var/www/html/app/config/local.php"
 
+echo "🛡️ Verificando instalação do Mautic..."
+
+# Protege banco de dados: NÃO roda instalação automática mesmo que o local.php esteja ausente
 if [ ! -f "$CONFIG_PATH" ]; then
-  echo "⚠️ Mautic config not found at $CONFIG_PATH"
-  echo "⚠️ Preservando banco de dados existente. Instalador NÃO será executado automaticamente."
+  echo "⚠️ Arquivo local.php não encontrado."
+  echo "❌ Instalação automática bloqueada para evitar sobrescrever banco existente."
 else
-  echo "✅ Mautic já instalado. Arquivo local.php detectado."
+  echo "✅ Arquivo local.php encontrado. Mautic já está configurado."
 fi
 
-# Executa o Apache normalmente
+# Sobe Apache normalmente
 exec apache2-foreground
