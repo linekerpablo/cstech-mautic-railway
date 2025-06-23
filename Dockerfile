@@ -1,4 +1,4 @@
-FROM mautic/mautic:v4-apache
+FROM mautic/mautic:5-apache
 
 # Variáveis de ambiente para o build e runtime
 ARG MAUTIC_DB_HOST
@@ -19,7 +19,7 @@ ENV MAUTIC_URL=$MAUTIC_URL
 ENV MAUTIC_ADMIN_EMAIL=$MAUTIC_ADMIN_EMAIL
 ENV MAUTIC_ADMIN_PASSWORD=$MAUTIC_ADMIN_PASSWORD
 ENV MAUTIC_RUN_CRON_JOBS=true
-ENV MAUTIC_TRUSTED_PROXIES=0.0.0.0/0
+ENV MAUTIC_TRUSTED_PROXIES='["0.0.0.0/0"]'
 ENV PHP_INI_DATE_TIMEZONE='UTC'
 
 # Copia a configuração fixa do Mautic já instalado
