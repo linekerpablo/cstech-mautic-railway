@@ -1,4 +1,4 @@
-FROM mautic/mautic:5-apache
+FROM mautic/mautic:v4-apache
 
 # Variáveis de ambiente para o build e runtime
 ARG MAUTIC_DB_HOST
