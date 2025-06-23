@@ -24,5 +24,8 @@ ENV PHP_INI_DATE_TIMEZONE='UTC'
 
 # Copia a configuração fixa do Mautic já instalado
 COPY --chown=www-data:www-data local.php /var/www/html/app/config/local.php
+COPY --chown=www-data:www-data local.php /var/www/html/docroot/app/config/local.php
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+RUN chown -R www-data:www-data /var/www/html/var

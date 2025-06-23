@@ -1,16 +1,40 @@
 version: "3.8"
 
 services:
+  db:
+    image: mysql:5.7
+    container_name: mautic_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mauticdb
+      MYSQL_USER: mautic
+      MYSQL_PASSWORD: mautic
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
   mautic:
-    build: .
+    image: mautic/mautic:5-apache
     ports:
       - "8080:80"
     environment:
-      MAUTIC_DB_HOST: 192.168.4.42
+      MAUTIC_DB_HOST: db
       MAUTIC_DB_PORT: 3306
-      MAUTIC_DB_USER: appcompass_user
-      MAUTIC_DB_PASSWORD: appcompass_password
+      MAUTIC_DB_USER: mautic
+      MAUTIC_DB_PASSWORD: mautic
       MAUTIC_DB_NAME: mauticdb
       MAUTIC_URL: http://localhost:8080
       MAUTIC_ADMIN_EMAIL: admin@localhost
       MAUTIC_ADMIN_PASSWORD: admin
+      MAUTIC_TRUSTED_PROXIES: '["0.0.0.0/0"]'
+    depends_on:
+      - db
+    volumes:
+      - ./local.php:/var/www/html/app/config/local.php
+      - mautic_data:/var/www/html/var
+
+volumes:
+  db_data:
+  mautic_data:
