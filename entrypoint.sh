@@ -1,3 +1,3 @@
 #!/bin/bash
-chown -R www-data:www-data /var/www/html
+cp -f /local.php /var/www/html/app/config/local.php
 exec apache2-foreground 
