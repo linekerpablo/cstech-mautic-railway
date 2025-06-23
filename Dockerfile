@@ -22,7 +22,7 @@ ENV MAUTIC_RUN_CRON_JOBS=true
 ENV PHP_INI_DATE_TIMEZONE='UTC'
 
 # Copia apenas o local.php
-COPY local.php /local.php
+COPY local.php /var/www/html/app/config/local.php
 
 RUN chown -R www-data:www-data /var/www/html
 
