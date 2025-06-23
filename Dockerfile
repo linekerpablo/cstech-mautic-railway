@@ -23,6 +23,6 @@ ENV MAUTIC_TRUSTED_PROXIES='["0.0.0.0/0"]'
 ENV PHP_INI_DATE_TIMEZONE='UTC'
 
 # Copia a configuração fixa do Mautic já instalado
-COPY local.php /var/www/html/app/config/local.php
+COPY --chown=www-data:www-data local.php /var/www/html/app/config/local.php
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
