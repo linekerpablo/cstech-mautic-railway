@@ -28,7 +28,7 @@ services:
       MAUTIC_URL: http://localhost:8080
       MAUTIC_ADMIN_EMAIL: admin@localhost
       MAUTIC_ADMIN_PASSWORD: admin
-      MAUTIC_TRUSTED_PROXIES: 0.0.0.0/0
+      MAUTIC_TRUSTED_PROXIES: '0.0.0.0/0'
     depends_on:
       - db
     volumes:

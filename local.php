@@ -10,5 +10,11 @@ $parameters = array(
     'trusted_proxies' => array('0.0.0.0/0'),
     'install_source' => 'Docker',
     'installed' => true,
-    'secret_key' => 'a984e76e-93e7-43e9-b4aa-6781d6f6df14'
+    'secret_key' => 'a984e76e-93e7-43e9-b4aa-6781d6f6df14',
+    'default_timezone' => 'UTC',
+    // Configurações adicionais para garantir bypass do installer
+    'admin_email' => 'admin@carvalhosilvatech.com.br',
+    'admin_password' => 'admin123',
+    'mailer_from_name' => 'Mautic',
+    'mailer_from_email' => 'admin@carvalhosilvatech.com.br',
 );

@@ -21,8 +21,8 @@ ENV MAUTIC_ADMIN_PASSWORD=$MAUTIC_ADMIN_PASSWORD
 ENV MAUTIC_RUN_CRON_JOBS=true
 ENV PHP_INI_DATE_TIMEZONE='UTC'
 
-# Copia apenas o local.php
-#COPY local.php /var/www/html/app/config/local.php
+# Copia o local.php para um local temporário
+COPY local.php /tmp/local.php
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN chown -R www-data:www-data /var/www/html
