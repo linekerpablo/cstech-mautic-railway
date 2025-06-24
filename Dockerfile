@@ -24,7 +24,9 @@ ENV PHP_INI_DATE_TIMEZONE='UTC'
 # Copia apenas o local.php
 COPY local.php /var/www/html/app/config/local.php
 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN chown -R www-data:www-data /var/www/html
+RUN mkdir -p /var/www/html/var && chown -R www-data:www-data /var/www/html/var
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
