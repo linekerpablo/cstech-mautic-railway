@@ -16,7 +16,7 @@ services:
       - db_data:/var/lib/mysql
 
   mautic:
-    image: mautic/mautic:v4-apache
+    build: .
     ports:
       - "8080:80"
     environment:
@@ -25,14 +25,12 @@ services:
       MAUTIC_DB_USER: mautic
       MAUTIC_DB_PASSWORD: mautic
       MAUTIC_DB_NAME: mauticdb
-      MAUTIC_URL: http://localhost:8080
-      MAUTIC_ADMIN_EMAIL: admin@localhost
-      MAUTIC_ADMIN_PASSWORD: admin
-      MAUTIC_TRUSTED_PROXIES: '0.0.0.0/0'
+      MAUTIC_TRUSTED_PROXIES: '["0.0.0.0/0"]'
+      MAUTIC_RUN_CRON_JOBS: 'true'
+      PHP_INI_DATE_TIMEZONE: 'UTC'
     depends_on:
       - db
     volumes:
-      - ./local.php:/var/www/html/app/config/local.php
       - mautic_data:/var/www/html/var
 
 volumes:
