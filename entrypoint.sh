@@ -1,18 +1,8 @@
 #!/bin/bash
 
-# Aguarda o diretório de configuração ser criado pelo container Mautic
-echo "Aguardando criação do diretório de configuração..."
-while [ ! -d "/var/www/html/app/config" ]; do
-    sleep 1
-done
+# Executa script de inicialização em background
+/usr/local/bin/init-local-config.sh &
 
-# Copia o arquivo de configuração para o local correto
-echo "Copiando arquivo de configuração..."
-cp /tmp/local.php /var/www/html/app/config/local.php
-
-# Ajusta permissões
-chown -R www-data:www-data /var/www/html
-chmod 644 /var/www/html/app/config/local.php
-
+# Executa o Apache (processo principal)
 echo "Iniciando Apache..."
 exec apache2-foreground 
